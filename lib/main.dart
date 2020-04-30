@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'dart:async';
 import 'pages/home.dart';
 
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         "/": (context) => LaunchPage(),
-        "home": (context) => HomePage(arg: ModalRoute.of(context).settings.arguments),
+        "home": (context) =>
+            HomePage(arg: ModalRoute.of(context).settings.arguments),
       },
     );
   }
@@ -28,7 +30,6 @@ class LaunchPage extends StatefulWidget {
 }
 
 class _LaunchPageState extends State<LaunchPage> {
-
   @override
   void initState() {
     Timer(Duration(seconds: 3), () {
@@ -42,10 +43,12 @@ class _LaunchPageState extends State<LaunchPage> {
   Widget build(BuildContext context) {
     print('构建启动页');
     return SafeArea(
-      child: Column(
-        children: <Widget>[
-          Expanded(child: Image.asset('images/launch.png', fit: BoxFit.fitHeight)),
-        ],
+      child: Container(
+        color: Color.fromRGBO(246, 246, 246, 1),
+        child: ConstrainedBox(
+          child: Image.asset('images/launch.png'),
+          constraints: BoxConstraints.expand(),
+        ),
       ),
     );
   }
