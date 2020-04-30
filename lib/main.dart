@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primaryColor: Colors.white,
       ),
       initialRoute: '/',
       routes: {
@@ -31,10 +31,9 @@ class _LaunchPageState extends State<LaunchPage> {
 
   @override
   void initState() {
-    print('初始化、倒计时跳转');
     Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushNamed("home", arguments: "index");
       print('打开首页');
+      Navigator.of(context).pushNamed("home", arguments: "index");
     });
     super.initState();
   }
