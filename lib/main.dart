@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.grey),
       ),
       initialRoute: '/',
       routes: {

@@ -17,6 +17,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/launch.png
+    - images/user-icon.jpg
   # fonts:
   #   - family: Schyler
   #     fonts:
