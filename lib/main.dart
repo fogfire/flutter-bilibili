@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async';
-import 'pages/home.dart';
+import 'pages/index.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => LaunchPage(),
         "home": (context) =>
-            HomePage(arg: ModalRoute.of(context).settings.arguments),
+            Index(),
       },
     );
   }
