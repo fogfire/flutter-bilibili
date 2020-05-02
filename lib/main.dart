@@ -11,8 +11,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.grey),
+        primaryColor: Color.fromRGBO(251, 114, 153, 1),
+        primaryColorBrightness: Brightness.dark,
+        dividerColor: Colors.white,
+        indicatorColor: Color.fromRGBO(251, 114, 153, 1),
+        tabBarTheme: TabBarTheme(
+          labelColor: Color.fromRGBO(251, 114, 153, 1),
+          unselectedLabelColor: Color.fromRGBO(80, 80, 80, 1),
+          labelStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontWeight: FontWeight.normal,
+          ),
+          indicatorSize: TabBarIndicatorSize.label,
+        ),
       ),
       initialRoute: '/',
       routes: {

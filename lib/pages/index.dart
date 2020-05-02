@@ -11,14 +11,36 @@ class _IndexState extends State<Index> {
   int _bottomNavigationBarTapIndex = 0;
   Widget _body = Home();
 
+  List<Widget> _getActions() {
+    return [Icons.games, Icons.file_download, Icons.email]
+        .map(
+          (v) => SizedBox(
+            width: 40,
+            child: IconButton(
+              onPressed: () => {},
+              icon: Icon(v),
+              iconSize: 20,
+              padding: EdgeInsets.all(0),
+            ),
+          ),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _body,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          leading: _Leading(),
+          title: _Title(),
+          actions: _getActions(),
+        ),
+      ),
       drawer: _Drawer(),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.pink[300],
         type: BottomNavigationBarType.fixed,
         onTap: _onBottomNavigationBarTap,
         currentIndex: _bottomNavigationBarTapIndex,
@@ -78,5 +100,68 @@ class _Drawer extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _Leading extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('打开抽屉');
+        Scaffold.of(context).openDrawer();
+      },
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: 8.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Divider(height: 5.0, thickness: 2.0),
+                Divider(height: 5.0, thickness: 2.0),
+                Divider(height: 5.0, thickness: 2.0),
+              ],
+            ),
+          ),
+          SizedBox(width: 8),
+          Expanded(
+            child: Center(
+              child: SizedBox(
+                width: 36,
+                height: 36,
+                child: ClipOval(
+                  child: Image.asset('images/user-icon.jpg', fit: BoxFit.cover),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 30,
+        padding: EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color.fromRGBO(255, 255, 255, 0.1),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.search,
+              size: 15,
+              color: Color.fromRGBO(200, 200, 200, 0.4),
+            ),
+            Spacer(),
+          ],
+        ));
   }
 }

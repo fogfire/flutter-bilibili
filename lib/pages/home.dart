@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../components/HomeBody.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,117 +22,49 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  List<Widget> _getActions() {
-    return [Icons.games, Icons.file_download, Icons.email]
-        .map((icon) => Padding(
-              padding: EdgeInsets.all(8),
-              child: Icon(
-                icon,
-                size: 20,
-                color: Colors.grey,
-              ),
-            ))
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
-        child: AppBar(
-          leading: _Leading(ctx: context),
-          title: _Title(),
-          actions: _getActions(),
-          bottom: TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            tabs: _tabs.map((v) => Text(v)).toList(),
-            labelPadding: EdgeInsets.fromLTRB(12, 2, 12, 6),
-            labelColor: Colors.pink[400],
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.pink[400],
-            indicatorSize: TabBarIndicatorSize.label,
-            unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            labelStyle: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      appBar: TabBar(
+        controller: _tabController,
+        isScrollable: true,
+        tabs: _tabs.map((v) => Text(v)).toList(),
+        labelPadding: EdgeInsets.fromLTRB(12, 3, 12, 3),
       ),
       body: TabBarView(
         controller: _tabController,
-        children: _tabs.map((item) => HomeBody(name: item)).toList(),
+        children: _tabs.map((item) => _ContentList(channel: item)).toList(),
       ),
     );
   }
 }
 
-class _Leading extends StatelessWidget {
-  _Leading({Key key, @required this.ctx}) : super(key: key);
+class _ContentList extends StatefulWidget {
+  _ContentList({ Key key, @required this.channel }) : super(key: key);
 
-  final BuildContext ctx;
+  final String channel;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('打开抽屉');
-        Scaffold.of(ctx).openDrawer();
-      },
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width: 8.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Divider(height: 5.0, thickness: 2.0, color: Colors.grey),
-                Divider(height: 5.0, thickness: 2.0, color: Colors.grey),
-                Divider(height: 5.0, thickness: 2.0, color: Colors.grey),
-              ],
-            ),
-          ),
-          SizedBox(width: 8),
-          Expanded(
-            child: Center(
-              child: SizedBox(
-                width: 36,
-                height: 36,
-                child: ClipOval(
-                  child: Image.asset('images/user-icon.jpg', fit: BoxFit.cover),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  __ContentListState createState() => __ContentListState();
 }
 
-class _Title extends StatelessWidget {
+class __ContentListState extends State<_ContentList> {
+  List<Object> _list;
+
+  @override
+  void initState() {
+    super.initState();
+    switch(widget.channel) {
+      case '推荐':
+        break;
+      default: break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 30,
-        padding: EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.grey[100],
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.search,
-              size: 15,
-              color: Colors.grey,
-            ),
-            Spacer(),
-          ],
-        ));
+      child: Text(widget.channel),
+    );
   }
 }

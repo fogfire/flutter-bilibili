@@ -16,15 +16,10 @@ class _ChannelState extends State<Channel> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // leading: , 头像
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: <Widget>[Text('频道'), Text('分区')],
-          labelColor: Colors.grey,
-          indicatorColor: Colors.pink[300],
-        ),
+    return Container(
+      child: TabBar(
+        controller: _tabController,
+        tabs: <Widget>[Text('频道'), Text('分区')],
       ),
     );
   }
