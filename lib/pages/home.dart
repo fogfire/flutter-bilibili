@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../api/videoApi.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -56,9 +57,15 @@ class __ContentListState extends State<_ContentList> {
     super.initState();
     switch(widget.channel) {
       case '推荐':
+        getRec() ;
         break;
       default: break;
     }
+  }
+
+  void getRec() async {
+    final res = await VideoApi.getHomeList();
+    print(res);
   }
 
   @override
