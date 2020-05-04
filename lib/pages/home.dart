@@ -57,7 +57,8 @@ class __ContentListState extends State<_ContentList> {
     super.initState();
     switch(widget.channel) {
       case '推荐':
-        getRec() ;
+        print('拉取');
+        getRec();
         break;
       default: break;
     }

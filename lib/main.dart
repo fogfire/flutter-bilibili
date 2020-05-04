@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async';
+import 'utils/http/http_manager.dart';
+import 'utils/http/log_interceptor.dart';
 import 'pages/index.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  HttpManager().init(
+    baseUrl: 'https://httpbin.org',
+    interceptors: [ LogInterceptor() ],
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
