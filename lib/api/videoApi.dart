@@ -10,9 +10,17 @@ class VideoApi {
         print('成功');
       },
       errorCallback: (HttpError error) {
-       print('失败');
+       print(error);
       },
-      tag: "tag",
+      tag: "getHomeList",
+    );
+  }
+  static getChannels(Function success, Function error) {
+    HttpManager().get(
+      url: "/home/channel",
+      successCallback: success,
+      errorCallback: error,
+      tag: "getChannel",
     );
   }
 }

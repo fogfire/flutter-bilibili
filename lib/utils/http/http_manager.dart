@@ -193,6 +193,7 @@ class HttpManager {
           options: options,
           cancelToken: cancelToken);
       String statusCode = response.data["statusCode"];
+      print(response);
       if (statusCode == "0") {
         //成功
         if (successCallback != null) {

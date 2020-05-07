@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../api/videoApi.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -13,7 +16,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabs = <String>['直播', '推荐', '热门', '追番', '影视', '抗击肺炎', '学习区', '新时代'];
+    _tabs = <String>[];
     _tabController = new TabController(length: _tabs.length, vsync: this);
   }
 

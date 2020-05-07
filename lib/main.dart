@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async';
+
 import 'utils/http/http_manager.dart';
 import 'utils/http/log_interceptor.dart';
+import 'api/videoApi.dart';
 import 'pages/index.dart';
 
 void main() {
   HttpManager().init(
-    baseUrl: 'https://httpbin.org',
+    baseUrl: 'http://mock.jsyang.cn/mock/11',
     interceptors: [ LogInterceptor() ],
   );
   runApp(MyApp());
@@ -59,7 +61,17 @@ class _LaunchPageState extends State<LaunchPage> {
       print('打开首页');
       Navigator.of(context).pushNamed("home", arguments: "index");
     });
+    loadChannel();
+    
     super.initState();
+  }
+
+  void loadChannel() async {
+    VideoApi.getChannels((res) {
+      print(res);
+    }, (error) {
+      print(error);
+    });
   }
 
   @override
